@@ -1,0 +1,35 @@
+
+
+
+.form-container {
+  background-color: #FFFFFF;
+  width: fit-content;
+  min-width: 500px;
+  min-height: 205px;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  outline: 1px solid #CCCCCC;
+  
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  
+  .title {
+    font-weight: 700;
+    font-size: 22px;
+  }
+
+  @media screen and (max-width: 767px) {
+    margin: 1rem;
+    min-width: 80%;
+    max-width: 455px;
+    min-height: 405px;
+    justify-content: center;
+  }
+}
+
+#login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}

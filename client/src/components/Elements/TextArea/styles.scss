@@ -1,0 +1,39 @@
+.text-area-container {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+
+  .label {
+
+  }
+
+  .text-area-wrapper {
+    display: flex;
+    flex-direction: column; // rever o pq que o input fica 100%
+  }
+
+  .input {
+    color: #000000;
+    padding: 8px 11.2px;
+    border-radius: .5rem;
+    height: 2rem;
+
+    &--neutral {
+      border: 1px solid #777777;
+    }
+
+    &--danger {
+      border: 1px solid #777777;
+      color: #BB2F30;
+    }
+
+    &:focus {
+      outline: none;
+      border: 1px solid #555555;
+    }
+
+    &::placeholder {
+      color: #CCCCCC;
+    }
+  }
+}

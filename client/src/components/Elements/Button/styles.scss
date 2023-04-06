@@ -1,0 +1,43 @@
+.button-wrapper {
+  align-self: flex-end;
+  width: 111px;
+  height: 32px;
+
+  @media screen and (max-width: 767px) {
+    width: 100%;
+  }
+  
+  .button {
+    font-size: 1rem;
+    font-weight: 700;
+    width: 100%;
+    height: 100%;
+    border-radius: .5rem;
+    cursor: pointer;
+    
+    &--primary {
+      background-color: #7695EC;
+      color: #FFFFFF;
+    }
+    
+    &--danger {
+      background-color: red;
+      color: #FFFFFF;
+    }
+  
+    &--success {
+      background-color: green;
+      color: #FFFFFF;
+    }
+  
+    &--neutral-1 {
+      background-color: white;
+      color: #000000;
+    }
+  
+    &--neutral-2 {
+      background-color: gray;
+      color: #FFFFFF;
+    }
+  }
+}
