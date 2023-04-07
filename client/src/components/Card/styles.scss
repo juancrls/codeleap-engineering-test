@@ -1,5 +1,7 @@
 .card-container {
-
+  min-width: 320px;
+  width: 100%; /* alterado para 100% */
+  max-width: 500px; /* adicionado max-width */
 }
 
 .card-body {
@@ -8,24 +10,20 @@
   border: 1px solid #CCCCCC;
   border-radius: 1rem;
 
-  width: fit-content;
-  min-width: 500px;
-  min-height: 205px;
-
   &--hasHeader {
-    border-radius: 0 0 1rem 1rem;  
+    border-radius: 0 0 1rem 1rem;
   }
+
+  width: 100%; /* alterado para 100% */
+  min-width: 320px; /* alterado para 320px */
+  min-height: 205px;
   
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 
-  @media screen and (max-width: 767px) {
-    margin: 1rem;
-    min-width: 90%;
-    max-width: 455px;
-    min-height: 405px;
-    justify-content: center;
+  @media screen and (min-width: 768px) {
+    min-width: 500px; /* alterado para 500px */
   }
 }
 
@@ -39,9 +37,32 @@
   background-color: #7695EC;
   color: #FFFFFF;
 
-  // @media screen and (max-width: 767px) {
-  //   margin: 1rem;
-  //   justify-content: center;
-  // }
-  
+  @media screen and (max-width: 767px) {
+    justify-content: center;
+  }
+}
+
+.card-title {
+  width: 100%;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.card-content {
+  width: 100%;
+  font-size: 1rem;
+  flex-grow: 1; /* adicionado flex-grow */
+}
+
+.card-footer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-footer button {
+  width: 40%;
+  font-size: 1rem;
 }
