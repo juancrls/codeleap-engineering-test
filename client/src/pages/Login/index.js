@@ -10,7 +10,6 @@ import { PulseLoader } from "react-spinners";
 
 const Login = (props) => {
   const [currentUser, setCurrentUser] = useState("");
-  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -30,7 +29,6 @@ const Login = (props) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (currentUser.trim()) {
-      setError("");
       setLoading(true);
       setTimeout(() => {
         props.setUsername(currentUser);
@@ -57,7 +55,6 @@ const Login = (props) => {
           placeholder="John doe"
           value={currentUser}
           id="login-username-text-area"
-          error={error}
           onChange={handleInputChange}
           theme="neutral"
         />
