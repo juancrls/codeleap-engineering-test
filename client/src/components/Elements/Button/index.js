@@ -9,9 +9,10 @@ export default function Button(props) {
   }
 
   let buttonClass = `button button--${theme ? theme : "neutral-1"}`
+  let buttonWrapperClass = `button-wrapper${theme == "icon" ? " button-wrapper--icon" : ""}`
 
   return (
-    <div className="button-wrapper">
+    <div className={buttonWrapperClass}>
       <button className={buttonClass} disabled={disabled || loading}>
         {children}
       </button>

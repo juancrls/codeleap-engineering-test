@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import Form from "../../components/Form";
 import TextArea from "../../components/Elements/TextArea";
 import Button from "../../components/Elements/Button";
+import { Card } from "../../components/Card";
 import { setUsername } from "../../actions/userActions";
 import { useNavigate } from "react-router-dom";
 import { PulseLoader } from "react-spinners";
@@ -45,29 +46,33 @@ const Login = (props) => {
 
   return (
     <div className="login-page">
-      <Form
-        onSubmit={handleSubmit}
-        id="login-form"
-        title="Welcome to CodeLeap network!"
-      >
-        <TextArea
-          label="Please enter your username"
-          placeholder="John doe"
-          value={currentUser}
-          id="login-username-text-area"
-          onChange={handleInputChange}
-          theme="neutral"
-        />
-
-        <Button
-          id="login-submit-button"
-          theme={"primary"}
-          disabled={!currentUser.trim()}
+      <Card>
+        <Form
+          onSubmit={handleSubmit}
+          id="login-form"
+          title="Welcome to CodeLeap network!"
         >
-          {loading ? <PulseLoader size={8} color={"#ffffff"}/> : "ENTER"}
-        </Button>
+          <TextArea
+            label="Please enter your username"
+            placeholder="John doe"
+            value={currentUser}
+            type="input"
+            id="login-username-text-area"
+            onChange={handleInputChange}
+            theme="neutral"
+          />
 
-      </Form>
+          <Button
+            id="login-submit-button"
+            theme={"primary"}
+            disabled={!currentUser.trim()}
+          >
+            {loading ? <PulseLoader size={8} color={"#ffffff"}/> : "ENTER"}
+          </Button>
+
+        </Form>
+
+      </Card>
     </div>
   );
 };

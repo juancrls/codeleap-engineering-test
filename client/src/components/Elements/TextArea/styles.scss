@@ -1,4 +1,8 @@
-.text-area-container {
+* {
+  font-family: "Roboto";
+}
+
+.text_area-container {
   display: flex;
   flex-direction: column;
   gap: .5rem;
@@ -13,16 +17,23 @@
     font-size: .9rem;
   }
 
-  .text-area-wrapper {
+  .text_area-wrapper {
     display: flex;
-    flex-direction: column; // rever o pq que o input fica 100%
+    flex-direction: column;
+    width: 100%;
   }
 
-  .input {
+  .text_area {
     color: #000000;
     padding: 8px 11.2px;
     border-radius: .5rem;
     height: 2rem;
+    
+    overflow-wrap: break-word;
+
+    &--medium {
+      height: 74px;
+    }
 
     &--neutral {
       border: 1px solid #777777;
@@ -40,6 +51,9 @@
 
     &::placeholder {
       color: #CCCCCC;
+      position: absolute;
+      top: 8px;
+      left: 11.2px;
     }
   }
 }

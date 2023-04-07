@@ -8,11 +8,16 @@ import { Card } from "../../components/Card";
 import "./styles.scss"
 
 const Feed = (props) => {
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+  // let title = "post_title";
+  // let content = "post_content";
+
+  const [postStates, setPostStates] = useState({
+    title: { value: "" },
+    content: { value: "" },
+  })
   const [loading, setLoading] = useState(false);
   
-  let hasEmptyFields = !title.trim() || !content.trim();
+  let hasEmptyFields = !postStates.title.value.trim() || !postStates.content.value.trim();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -20,7 +25,15 @@ const Feed = (props) => {
   }
 
   const handleInputChange = (event) => {
+    let stateId = event.target.id;
 
+    setPostStates((prev) => ({
+      ...prev,
+      [stateId]: {
+        value: event.target.value
+      }
+    }))
+    console.log("state", postStates)
   }
 
   return (
@@ -36,16 +49,17 @@ const Feed = (props) => {
             <TextArea
               label="Title"
               placeholder="Hello world"
-              value={title}
-              id="create-post-title-text-area"
+              value={postStates.title.value}
+              id="title"
+              type="input"
               onChange={handleInputChange}
               theme="neutral"
             />
             <TextArea
               label="Content"
               placeholder="Content here"
-              value={content}
-              id="create-post-content-text-area"
+              value={postStates.content.value}
+              id="content"
               onChange={handleInputChange}
               theme="neutral"
               size="medium"
