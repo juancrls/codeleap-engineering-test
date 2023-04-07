@@ -4,6 +4,8 @@ import Form from "../../components/Form";
 import TextArea from "../../components/Elements/TextArea";
 import Button from "../../components/Elements/Button";
 import { PulseLoader } from "react-spinners";
+import { Card } from "../../components/Card";
+import "./styles.scss"
 
 const Feed = (props) => {
   const [title, setTitle] = useState("");
@@ -22,39 +24,46 @@ const Feed = (props) => {
   }
 
   return (
-    <div>
-      Welcome to the Feed, {props.username}!
-      <Form
-        onSubmit={handleSubmit}
-        id="login-form"
-        title="What's on your mind?"
-        size="large"
-      >
-        <TextArea
-          label="Title"
-          placeholder="Hello world"
-          value={title}
-          id="create-post-title-text-area"
-          onChange={handleInputChange}
-          theme="neutral"
-        />
-        <TextArea
-          label="Content"
-          placeholder="Content here"
-          value={content}
-          id="create-post-content-text-area"
-          onChange={handleInputChange}
-          theme="neutral"
-          size="medium"
-        />
-        <Button
-          id="create-post-submit-button"
-          theme={"primary"}
-          disabled={hasEmptyFields}
-        >
-          {loading ? <PulseLoader size={8} color={"#ffffff"}/> : "Create"}
-        </Button>
-      </Form>
+    <div className="feed-wrapper">
+      <div className="feed-container">
+        <Card>
+          <Form
+            onSubmit={handleSubmit}
+            id="login-form"
+            title="What's on your mind?"
+            size="large"
+          >
+            <TextArea
+              label="Title"
+              placeholder="Hello world"
+              value={title}
+              id="create-post-title-text-area"
+              onChange={handleInputChange}
+              theme="neutral"
+            />
+            <TextArea
+              label="Content"
+              placeholder="Content here"
+              value={content}
+              id="create-post-content-text-area"
+              onChange={handleInputChange}
+              theme="neutral"
+              size="medium"
+            />
+            <Button
+              id="create-post-submit-button"
+              theme={"primary"}
+              disabled={hasEmptyFields}
+            >
+              {loading ? <PulseLoader size={8} color={"#ffffff"}/> : "Create"}
+            </Button>
+          </Form>
+        </Card>
+
+        <Card title="My First Post at CodeLeap Network!" showEditButtons>
+
+        </Card>
+      </div>
     </div>
   )
 }

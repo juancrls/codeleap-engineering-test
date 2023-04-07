@@ -18,3 +18,9 @@
   color: red;
   font-size: .9rem;
 }
+
+#login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
