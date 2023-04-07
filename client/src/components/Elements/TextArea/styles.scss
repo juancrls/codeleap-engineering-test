@@ -3,8 +3,14 @@
   flex-direction: column;
   gap: .5rem;
 
-  .label {
+  .label-container {
+    display: flex;
+    justify-content: space-between;
+  }
 
+  .error-span {
+    color: #FF0000;
+    font-size: .9rem;
   }
 
   .text-area-wrapper {
@@ -23,8 +29,8 @@
     }
 
     &--danger {
-      border: 1px solid #777777;
-      color: #BB2F30;
+      border: 1px solid #FF0000;
+      // color: #FF0000;
     }
 
     &:focus {

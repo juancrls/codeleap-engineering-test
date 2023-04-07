@@ -6,7 +6,7 @@ export default function TextArea(props) {
     label,
     type,
     value,
-    errorMsg,
+    error,
     onChange,
     id,
     placeholder,
@@ -15,7 +15,10 @@ export default function TextArea(props) {
 
   return (
     <div className="text-area-container">
-      <label className="label">{label}</label>
+      <div className="label-container">
+        <label className="label">{label}</label>
+        {error && <span className="error-span">{error}</span>}
+      </div>
 
       <div className="text-area-wrapper">
         <input
@@ -23,11 +26,10 @@ export default function TextArea(props) {
           id={id}
           type={type === "password-confirmation" ? "password" : type}
           value={value}
-          className={`input input--${theme} ${errorMsg ? "input--danger" : ""}`}
+          className={`input input--${theme} ${error ? "input--danger" : ""}`}
           placeholder={placeholder}
         />
       </div>
-      {errorMsg && <span className="error-span">{errorMsg}</span>}
     </div>
   );
 }

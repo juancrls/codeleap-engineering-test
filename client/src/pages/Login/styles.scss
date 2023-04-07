@@ -6,3 +6,15 @@
   justify-content: center;
   font-weight: 400;
 }
+
+.button-container {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.login-form-error-message {
+  color: red;
+  font-size: .9rem;
+}

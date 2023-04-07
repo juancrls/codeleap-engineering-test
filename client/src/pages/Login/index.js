@@ -5,9 +5,14 @@ import Form from "../../components/Form";
 import TextArea from "../../components/Elements/TextArea";
 import Button from "../../components/Elements/Button";
 import { setUsername } from "../../actions/userActions";
+import { useNavigate } from "react-router-dom";
+import { PulseLoader } from "react-spinners";
 
 const Login = (props) => {
-  const [text, setText] = useState("");
+  const [currentUser, setCurrentUser] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Atualiza o localStorage sempre que o username é atualizado
@@ -24,21 +29,24 @@ const Login = (props) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    props.setUsername(text);
+    if (currentUser.trim()) {
+      setError("");
+      setLoading(true);
+      setTimeout(() => {
+        props.setUsername(currentUser);
+        localStorage.setItem("username", currentUser);
+        navigate("/feed");
+        setLoading(false);
+      }, 2000);
+    }
   };
 
   const handleInputChange = (event) => {
-    setText(event.target.value);
+    setCurrentUser(event.target.value);
   };
 
   return (
     <div className="login-page">
-      <div>
-        <h3>
-          USER NAME: {props.username}
-        </h3>
-      </div>
-
       <Form
         onSubmit={handleSubmit}
         id="login-form"
@@ -47,20 +55,21 @@ const Login = (props) => {
         <TextArea
           label="Please enter your username"
           placeholder="John doe"
+          value={currentUser}
           id="login-username-text-area"
+          error={error}
           onChange={handleInputChange}
           theme="neutral"
-        >
-          {text}
-        </TextArea>
+        />
 
         <Button
           id="login-submit-button"
           theme={"primary"}
-          disabled={!text.trim()}
+          disabled={!currentUser.trim()}
         >
-          ENTER
+          {loading ? <PulseLoader size={8} color={"#ffffff"}/> : "ENTER"}
         </Button>
+
       </Form>
     </div>
   );
