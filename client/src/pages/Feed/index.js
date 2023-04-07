@@ -4,7 +4,8 @@ import Form from "../../components/Form";
 import TextArea from "../../components/Elements/TextArea";
 import Button from "../../components/Elements/Button";
 import { PulseLoader } from "react-spinners";
-import { Card } from "../../components/Card";
+import Card from "../../components/Card";
+import Header from "../../components/Header";
 import "./styles.scss"
 
 const Feed = (props) => {
@@ -37,47 +38,50 @@ const Feed = (props) => {
   }
 
   return (
-    <div className="feed-wrapper">
-      <div className="feed-container">
-        <Card>
-          <Form
-            onSubmit={handleSubmit}
-            id="login-form"
-            title="What's on your mind?"
-            size="large"
-          >
-            <TextArea
-              label="Title"
-              placeholder="Hello world"
-              value={postStates.title.value}
-              id="title"
-              type="input"
-              onChange={handleInputChange}
-              theme="neutral"
-            />
-            <TextArea
-              label="Content"
-              placeholder="Content here"
-              value={postStates.content.value}
-              id="content"
-              onChange={handleInputChange}
-              theme="neutral"
-              size="medium"
-            />
-            <Button
-              id="create-post-submit-button"
-              theme={"primary"}
-              disabled={hasEmptyFields}
-            >
-              {loading ? <PulseLoader size={8} color={"#ffffff"}/> : "Create"}
-            </Button>
-          </Form>
-        </Card>
+    <div className="feed">
+      <div className="feed-wrapper">
+        <Header title={"CodeLeap Network"}/>
+        <div className="feed-container">
+            <Card>
+              <Form
+                onSubmit={handleSubmit}
+                id="login-form"
+                title="What's on your mind?"
+                size="large"
+              >
+                <TextArea
+                  label="Title"
+                  placeholder="Hello world"
+                  value={postStates.title.value}
+                  id="title"
+                  type="input"
+                  onChange={handleInputChange}
+                  theme="neutral"
+                />
+                <TextArea
+                  label="Content"
+                  placeholder="Content here"
+                  value={postStates.content.value}
+                  id="content"
+                  onChange={handleInputChange}
+                  theme="neutral"
+                  size="medium"
+                />
+                <Button
+                  id="create-post-submit-button"
+                  theme={"primary"}
+                  disabled={hasEmptyFields}
+                >
+                  {loading ? <PulseLoader size={8} color={"#ffffff"}/> : "Create"}
+                </Button>
+              </Form>
+            </Card>
 
-        <Card title="My First Post at CodeLeap Network!" showEditButtons>
+            <Card title="My First Post at CodeLeap Network!" showEditButtons>
 
-        </Card>
-      </div>
+            </Card>
+          </div>
+        </div>
     </div>
   )
 }

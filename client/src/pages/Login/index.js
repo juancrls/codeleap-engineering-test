@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import Form from "../../components/Form";
 import TextArea from "../../components/Elements/TextArea";
 import Button from "../../components/Elements/Button";
-import { Card } from "../../components/Card";
+import Card from "../../components/Card";
 import { setUsername } from "../../actions/userActions";
 import { useNavigate } from "react-router-dom";
 import { PulseLoader } from "react-spinners";

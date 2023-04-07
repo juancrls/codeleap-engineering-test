@@ -2,10 +2,13 @@ import React from "react";
 import Button from "../Elements/Button";
 import "./styles.scss";
 
-export default function CardHeader(props) {
-  const { title, showEditButtons } = props;
+export default function Header(props) {
+  const { type, title, showEditButtons } = props;
+  
+  let className=`header header--${type}`
+
   return (
-    <div className="card-header">
+    <div className={className}>
       <div className="title">
         <span>{title}</span>
       </div>
