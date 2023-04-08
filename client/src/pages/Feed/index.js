@@ -4,14 +4,12 @@ import Form from "../../components/Form";
 import TextArea from "../../components/Elements/TextArea";
 import Button from "../../components/Elements/Button";
 import { PulseLoader } from "react-spinners";
+import { unsetUsername } from "../../actions/userActions";
 import Card from "../../components/Card";
 import Header from "../../components/Header";
 import "./styles.scss"
 
 const Feed = (props) => {
-  // let title = "post_title";
-  // let content = "post_content";
-
   const [postStates, setPostStates] = useState({
     title: { value: "" },
     content: { value: "" },
@@ -40,7 +38,8 @@ const Feed = (props) => {
   return (
     <div className="feed">
       <div className="feed-wrapper">
-        <Header title={"CodeLeap Network"}/>
+        <button onClick={props.unsetUsername}>UNSET</button>
+        <Header title={"CodeLeap Network"} showUserOptions/>
         <div className="feed-container">
             <Card>
               <Form
@@ -86,10 +85,16 @@ const Feed = (props) => {
   )
 }
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    unsetUsername: () => dispatch(unsetUsername())
+  };
+};
+
 const mapStateToProps = (state) => {
   return {
     username: state.username
   }
 }
 
-export default connect(mapStateToProps)(Feed);
+export default connect(mapStateToProps, mapDispatchToProps)(Feed);

@@ -11,6 +11,7 @@ import { PulseLoader } from "react-spinners";
 
 const Login = (props) => {
   const [currentUser, setCurrentUser] = useState("");
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -28,6 +29,7 @@ const Login = (props) => {
   }, []);
 
   const handleSubmit = async (event) => {
+    setError("");
     event.preventDefault();
     if (currentUser.trim()) {
       setLoading(true);
@@ -37,6 +39,8 @@ const Login = (props) => {
         navigate("/feed");
         setLoading(false);
       }, 2000);
+    } else {
+      setError("Username can not be empty!")
     }
   };
 

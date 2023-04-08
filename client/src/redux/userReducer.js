@@ -1,4 +1,4 @@
-import { SET_USERNAME } from "../actions/userActions";
+import { SET_USERNAME, UNSET_USERNAME } from "../actions/userActions";
 
 const loadUsernameFromLocalStorage = () => {
   const storedUsername = localStorage.getItem("username");
@@ -15,7 +15,12 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         username: action.payload,
-      };
+      }
+    case UNSET_USERNAME:
+      return {
+        ...state,
+        username: "",
+      }
     default:
       return state;
   }

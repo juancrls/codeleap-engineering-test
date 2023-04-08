@@ -2,7 +2,7 @@ import React from 'react'
 import "./styles.scss"
 
 export default function Button(props) {
-  let {theme="simple", disabled, children, loading} = props
+  let {theme="simple", disabled, children, loading, onClick} = props
 
   if(disabled) {
     theme = "neutral-2"
@@ -13,7 +13,7 @@ export default function Button(props) {
 
   return (
     <div className={buttonWrapperClass}>
-      <button className={buttonClass} disabled={disabled || loading}>
+      <button type="submit" className={buttonClass} disabled={disabled || loading} onClick={onClick}>
         {children}
       </button>
     </div>

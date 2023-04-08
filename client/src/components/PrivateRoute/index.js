@@ -1,10 +1,10 @@
 import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
-// import { useAuth } from '../contexts/AuthContext';
+import { connect } from "react-redux";
 
-export default function PrivateRoute() {
-  // const { currentUser } = useAuth();
-  let currentUser = true;
+const PrivateRoute = (props) => {
+  console.log("PRIVATE PROPS", props)
+  const { username: currentUser } = props;
 
   return currentUser ? (
     <>
@@ -14,3 +14,11 @@ export default function PrivateRoute() {
     <Navigate to="/login" />
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    username: state.username
+  }
+}
+
+export default connect(mapStateToProps)(PrivateRoute);

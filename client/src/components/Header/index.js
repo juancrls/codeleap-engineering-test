@@ -1,17 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "../Elements/Button";
+import UserNavBar from "../UserNavBar";
 import "./styles.scss";
+import { connect } from "react-redux";
+import { unsetUsername } from "../../actions/userActions";
+import userPlaceholderImage from "../assets/images/user-photo-placeholder.png"
 
-export default function Header(props) {
-  const { type, title, showEditButtons } = props;
+const Header = (props) => {
+  const { type, title, showEditButtons, showUserOptions, username } = props;
+  const [showUserNavBar, setShowUserNavBar] = useState(false);
+
+  const toggleUserNavBar = () => {
+    setShowUserNavBar(!showUserNavBar);
+  };
   
   let className=`header header--${type}`
 
   return (
     <div className={className}>
-      <div className="title">
-        <span>{title}</span>
-      </div>
+      {title ? (
+        <div className="title">
+          <span>{title}</span>
+        </div>
+      ) : null}
+
       {showEditButtons ? (
         <div className="edit-buttons-container">
           <Button id="post-edit-button" theme={"icon"}>
@@ -52,6 +64,33 @@ export default function Header(props) {
           </Button>
         </div>
       ) : null}
+
+      {showUserOptions ? (
+        <div className="user-options-container">
+          <span>@{username}</span>
+
+          <Button theme={"icon"} onClick={toggleUserNavBar}>
+            <div className="user-avatar-wrapper">
+              <img className="user-avatar" src={userPlaceholderImage} alt="User avatar"/>
+            </div>
+          </Button>
+          {showUserNavBar && <UserNavBar />}
+        </div>
+      ) : null}
     </div>
   );
 }
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    unsetUsername: () => dispatch(unsetUsername())
+  };
+};
+
+const mapStateToProps = (state) => {
+  return {
+    username: state.username
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
