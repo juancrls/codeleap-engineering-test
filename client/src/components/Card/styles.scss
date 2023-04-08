@@ -1,7 +1,6 @@
 .card-container {
-  min-width: 320px;
+  min-width: 150px;
   width: 100%;
-  max-width: 500px;
 }
 
 .card-body {
@@ -15,7 +14,7 @@
   }
 
   width: 100%;
-  min-width: 320px;
+  min-width: 150px;
   min-height: 205px;
   
   display: flex;
@@ -24,5 +23,11 @@
 
   @media screen and (min-width: 768px) {
     min-width: 500px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .card-container {
+    width: 90%;
   }
 }

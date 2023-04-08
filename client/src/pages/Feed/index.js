@@ -78,6 +78,18 @@ const Feed = (props) => {
             <Card title="My First Post at CodeLeap Network!" showEditButtons>
 
             </Card>
+            <Card title="My First Post at CodeLeap Network!" showEditButtons>
+
+            </Card>
+            <Card title="My First Post at CodeLeap Network!" showEditButtons>
+
+            </Card>
+            <Card title="My First Post at CodeLeap Network!" showEditButtons>
+
+            </Card>
+            <Card title="My First Post at CodeLeap Network!" showEditButtons>
+
+            </Card>
           </div>
         </div>
     </div>

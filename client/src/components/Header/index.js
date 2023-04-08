@@ -34,7 +34,7 @@ const handleClickOutside = (event) => {
   }, [showUserNavBar]);
   
 
-  let className=`header header--${type}`
+  let className=`header${type ? " header--" + type : ""}`
 
   return (
     <div className={className}>
