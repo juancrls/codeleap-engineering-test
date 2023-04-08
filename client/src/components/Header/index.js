@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Button from "../Elements/Button";
 import UserNavBar from "../UserNavBar";
 import "./styles.scss";
@@ -9,11 +9,31 @@ import userPlaceholderImage from "../assets/images/user-photo-placeholder.png"
 const Header = (props) => {
   const { type, title, showEditButtons, showUserOptions, username } = props;
   const [showUserNavBar, setShowUserNavBar] = useState(false);
-
-  const toggleUserNavBar = () => {
+  const userNavBarRef = useRef(null);
+  
+  const toggleUserNavBar = async () => {
     setShowUserNavBar(!showUserNavBar);
   };
+
+const toggleButtonRef = useRef(null);
+
+const handleClickOutside = (event) => {
+  if (userNavBarRef.current && !userNavBarRef.current.contains(event.target)) {
+    if (!toggleButtonRef.current.contains(event.target)) {
+      setShowUserNavBar(false);
+    }
+  }
+};
+
+  useEffect(() => {
+    if (showUserNavBar) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+  }, [showUserNavBar]);
   
+
   let className=`header header--${type}`
 
   return (
@@ -69,12 +89,20 @@ const Header = (props) => {
         <div className="user-options-container">
           <span>@{username}</span>
 
-          <Button theme={"icon"} onClick={toggleUserNavBar}>
+          <Button
+            ref={toggleButtonRef} // Assign the toggleButtonRef to the button element
+            theme={"icon"}
+            onClick={toggleUserNavBar}
+          >
             <div className="user-avatar-wrapper">
               <img className="user-avatar" src={userPlaceholderImage} alt="User avatar"/>
             </div>
           </Button>
-          {showUserNavBar && <UserNavBar />}
+          {showUserNavBar && (
+            <div ref={userNavBarRef} className="nav-bar-wrapper">
+              <UserNavBar />
+            </div>
+          )}
         </div>
       ) : null}
     </div>

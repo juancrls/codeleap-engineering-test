@@ -40,6 +40,18 @@
     gap: .5rem;
   }
 
+  .nav-bar-wrapper {
+    width: 11rem;
+    position: absolute;
+    top: 1rem;
+    left: 10.5rem;
+    background-color: #FFFFFF;
+    color: #AAAAAA;
+    border-radius: 1rem;
+    border-top-left-radius: 0;
+    border: 1px solid #CCCCCC;
+  }
+
   .user-avatar-wrapper {
     width: 40px;
     height: 40px;

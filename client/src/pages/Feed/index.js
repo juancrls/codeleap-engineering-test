@@ -38,7 +38,6 @@ const Feed = (props) => {
   return (
     <div className="feed">
       <div className="feed-wrapper">
-        <button onClick={props.unsetUsername}>UNSET</button>
         <Header title={"CodeLeap Network"} showUserOptions/>
         <div className="feed-container">
             <Card>

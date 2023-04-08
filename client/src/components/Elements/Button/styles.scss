@@ -3,6 +3,10 @@
   width: 111px;
   height: 32px;
 
+  &--full {
+    width: 100%;
+  }
+
   &--icon {
     width: fit-content;
   }
@@ -86,6 +90,20 @@
   
       &:active {
         background-color: #7a7a7a;
+      }
+    }
+
+    &--neutral-3 {
+      background-color: none;
+      color: #AAAAAA;
+      font-weight: 400;
+  
+      &:hover {
+        background-color: #f7f7f7;
+      }
+  
+      &:active {
+        background-color: #ebebeb;
       }
     }
 

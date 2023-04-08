@@ -1,21 +1,29 @@
 .nav-bar-container {
-  position: absolute;
-  top: 2.5rem;
-  background-color: #FFFFFF;
-  color: #AAAAAA;
-  padding: 1rem 2rem;
-  border-radius: 1rem;
-  border: 1px solid #CCCCCC;
+  font-size: .9rem;
+
+  .separator {
+    left: 0;
+    border-bottom: 1px solid black;
+    width: 100%;
+  }
 
   .options-container {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+
+    li {
+      margin: 1rem 2rem;
+    }
+
+    #logout-button {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
 
     .user-options {
       display: flex;
       flex-direction: column;
-      gap: 1rem;
     }
   }
 }
