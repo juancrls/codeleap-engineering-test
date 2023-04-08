@@ -5,10 +5,14 @@ export const getTimeElapsed = (timestamp) => {
   const day = 24 * hour;
 
   if (timeDiff < minute) {
-    return "agora";
+    return "less than a minute ago";
   } else if (timeDiff < hour) {
     const minutes = Math.floor(timeDiff / minute);
-    return `${minutes} minutes ago`;
+    if(minutes == 1) {
+      return `${minutes} minute ago`;
+    } else {
+      return `${minutes} minutes ago`;
+    }
   } else if (timeDiff < day) {
     const hours = Math.floor(timeDiff / hour);
     return `${hours} hours ago`;

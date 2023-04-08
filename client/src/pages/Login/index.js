@@ -21,16 +21,11 @@ const Login = (props) => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
+  // set the username on localStorage
   useEffect(() => {
     localStorage.setItem("username", props.username);
   }, [props.username]);
 
-  useEffect(() => {
-    const storedUsername = localStorage.getItem("username");
-    if (storedUsername) {
-      props.setUsername(storedUsername);
-    }
-  }, []);
 
   const handleSubmit = async (event) => {
     // setError("");

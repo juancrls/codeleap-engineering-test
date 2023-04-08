@@ -17,6 +17,12 @@ import "./styles.scss"
 const Feed = (props) => {
   const { createPost, editPost, deletePost, username, posts } = props;
 
+    // set the username on localStorage
+
+    useEffect(() => {
+      localStorage.setItem("posts", JSON.stringify(posts));
+    }, [posts]);
+
   const [postStates, setPostStates] = useState({
     title: { value: "" },
     content: { value: "" },
@@ -30,11 +36,6 @@ const Feed = (props) => {
       setLoading(true);
       setTimeout(() => {
         createPost(postStates.title.value, postStates.content.value, username);
-
-        // localStorage.setItem("username", currentUser);
-        // navigate("/feed");
-
-        console.log("post created!", props.posts);
         setLoading(false);
       }, 2000);
   }
@@ -51,8 +52,8 @@ const Feed = (props) => {
   }
 
   const postCards = posts.map(post => (
-    <Card key={post.id} title={post.title} content={post.content} username={post.username} showEditButtons={post.author == username ? true : false}>
-      <PostView />
+    <Card key={post.id} title={post.title} showEditButtons={post.author == username ? true : false}>
+      <PostView author={post.author} content={post.content} timestamp={post.timestamp} />
     </Card>
   ))
 
@@ -97,10 +98,6 @@ const Feed = (props) => {
                   {loading ? <PulseLoader size={8} color={"#ffffff"}/> : "Create"}
                 </Button>
               </Form>
-            </Card>
-
-            <Card title="test">
-              <PostView username="Victor" timestamp="25 minutes ago" content={contentTest}/>
             </Card>
             { postCards }
           </div>

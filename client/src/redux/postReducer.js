@@ -5,9 +5,14 @@ const loadUsernameFromLocalStorage = () => {
   return storedUsername ? storedUsername : "";
 };
 
+const loadPostsFromLocalStorage = () => {
+  const storedPosts = JSON.parse(localStorage.getItem("posts"));
+  return storedPosts ? storedPosts : [];
+};
+
 const initialState = {
   username: loadUsernameFromLocalStorage(),
-  posts: []
+  posts: loadPostsFromLocalStorage()
 };
 
 const postReducer = (state = initialState, action) => {
