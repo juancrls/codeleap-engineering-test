@@ -10,18 +10,22 @@ import { useNavigate } from "react-router-dom";
 import { PulseLoader } from "react-spinners";
 
 const Login = (props) => {
+  console.log("PROPS", props)
   const [currentUser, setCurrentUser] = useState("");
-  const [error, setError] = useState("");
+  // const [error, setError] = useState("");
+  /**
+   * not implemented - doesn't follow the design on figma
+   * this approach would turn the input red with a message for the user
+   * current design: keep the button disabled
+   */
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Atualiza o localStorage sempre que o username é atualizado
     localStorage.setItem("username", props.username);
   }, [props.username]);
 
   useEffect(() => {
-    // Recupera o username do localStorage quando o componente é montado
     const storedUsername = localStorage.getItem("username");
     if (storedUsername) {
       props.setUsername(storedUsername);
@@ -29,7 +33,7 @@ const Login = (props) => {
   }, []);
 
   const handleSubmit = async (event) => {
-    setError("");
+    // setError("");
     event.preventDefault();
     if (currentUser.trim()) {
       setLoading(true);
@@ -40,7 +44,7 @@ const Login = (props) => {
         setLoading(false);
       }, 2000);
     } else {
-      setError("Username can not be empty!")
+      // setError("Username can not be empty!")
     }
   };
 
@@ -70,6 +74,7 @@ const Login = (props) => {
             id="login-submit-button"
             theme={"primary"}
             disabled={!currentUser.trim()}
+            loading={loading}
           >
             {loading ? <PulseLoader size={8} color={"#ffffff"}/> : "ENTER"}
           </Button>
@@ -83,13 +88,15 @@ const Login = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    username: state.username
+    username: state.user.username
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    setUsername: (username) => dispatch(setUsername(username))
+    setUsername: (username) => {
+      dispatch(setUsername(username))
+    }
   };
 };
 

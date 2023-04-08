@@ -3,7 +3,7 @@ import Header from '../Header';
 import "./styles.scss";
 
 export default function Card(props) {
-  const { title, showEditButtons, children } = props
+  const { title, showEditButtons, children, isPostCard } = props
   return (
     <div className='card-container'>
       {title ? (

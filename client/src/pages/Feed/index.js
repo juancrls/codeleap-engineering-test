@@ -1,15 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
+import { PulseLoader } from "react-spinners";
+
 import Form from "../../components/Form";
+import PostView from "../../components/PostView"
 import TextArea from "../../components/Elements/TextArea";
 import Button from "../../components/Elements/Button";
-import { PulseLoader } from "react-spinners";
-import { unsetUsername } from "../../actions/userActions";
 import Card from "../../components/Card";
 import Header from "../../components/Header";
+
+import { connect } from "react-redux";
+import { unsetUsername } from "../../actions/userActions";
+import { createPost, editPost, deletePost } from "../../actions/postActions";
+
 import "./styles.scss"
 
 const Feed = (props) => {
+  const { createPost, editPost, deletePost, username, posts } = props;
+
   const [postStates, setPostStates] = useState({
     title: { value: "" },
     content: { value: "" },
@@ -20,7 +27,16 @@ const Feed = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("post created!");
+      setLoading(true);
+      setTimeout(() => {
+        createPost(postStates.title.value, postStates.content.value, username);
+
+        // localStorage.setItem("username", currentUser);
+        // navigate("/feed");
+
+        console.log("post created!", props.posts);
+        setLoading(false);
+      }, 2000);
   }
 
   const handleInputChange = (event) => {
@@ -32,8 +48,15 @@ const Feed = (props) => {
         value: event.target.value
       }
     }))
-    console.log("state", postStates)
   }
+
+  const postCards = posts.map(post => (
+    <Card key={post.id} title={post.title} content={post.content} username={post.username} showEditButtons={post.author == username ? true : false}>
+      <PostView />
+    </Card>
+  ))
+
+  const contentTest = "Curabitur suscipit suscipit tellus. Phasellus consectetuer vestibulum elit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Maecenas egestas arcu quis ligula mattis placerat. Duis vel nibh at velit scelerisque suscipit."
 
   return (
     <div className="feed">
@@ -69,27 +92,17 @@ const Feed = (props) => {
                   id="create-post-submit-button"
                   theme={"primary"}
                   disabled={hasEmptyFields}
+                  loading={loading}
                 >
                   {loading ? <PulseLoader size={8} color={"#ffffff"}/> : "Create"}
                 </Button>
               </Form>
             </Card>
 
-            <Card title="My First Post at CodeLeap Network!" showEditButtons>
-
+            <Card title="test">
+              <PostView username="Victor" timestamp="25 minutes ago" content={contentTest}/>
             </Card>
-            <Card title="My First Post at CodeLeap Network!" showEditButtons>
-
-            </Card>
-            <Card title="My First Post at CodeLeap Network!" showEditButtons>
-
-            </Card>
-            <Card title="My First Post at CodeLeap Network!" showEditButtons>
-
-            </Card>
-            <Card title="My First Post at CodeLeap Network!" showEditButtons>
-
-            </Card>
+            { postCards }
           </div>
         </div>
     </div>
@@ -98,13 +111,15 @@ const Feed = (props) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    unsetUsername: () => dispatch(unsetUsername())
+    unsetUsername: () => dispatch(unsetUsername()),
+    createPost: (title, content, username) => dispatch(createPost(title, content, username)),
   };
 };
 
 const mapStateToProps = (state) => {
   return {
-    username: state.username
+    username: state.user.username,
+    posts: state.posts.posts
   }
 }
 

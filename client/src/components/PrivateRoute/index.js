@@ -3,7 +3,6 @@ import { Navigate, Outlet } from 'react-router-dom';
 import { connect } from "react-redux";
 
 const PrivateRoute = (props) => {
-  console.log("PRIVATE PROPS", props)
   const { username: currentUser } = props;
 
   return currentUser ? (
@@ -17,7 +16,7 @@ const PrivateRoute = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    username: state.username
+    username: state.user.username
   }
 }
 
