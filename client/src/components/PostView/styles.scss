@@ -4,10 +4,6 @@
   gap: 1rem;
   font-size: 18px;
   line-height: 21px;
-
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
 }
 
 .post-info {
@@ -16,6 +12,10 @@
   justify-content: space-between;
   color: #777777;
   font-weight: 700;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .post-timestamp {
@@ -24,6 +24,7 @@
 
 .post-content {
   color: #000000;
+  white-space: pre-line
 }
 
 @media screen and (max-width: 375px) {

@@ -43,13 +43,17 @@
   .nav-bar-wrapper {
     width: 11rem;
     position: absolute;
-    top: 1rem;
-    left: 10.5rem;
+    top: 2rem;
+    right: 3rem;
     background-color: #FFFFFF;
     color: #AAAAAA;
     border-radius: 1rem;
-    border-top-left-radius: 0;
-    border: 1px solid #CCCCCC;
+    border-top-right-radius: 0;
+    border: 2px solid #CCCCCC;
+
+    @media screen and (max-width: 320px) {
+      right: 2rem;
+    }
   }
 
   .user-avatar-wrapper {
@@ -66,9 +70,6 @@
   }
 
 
-  // @media screen and (max-width: 767px) {
-  //   justify-content: center;
-  // }
 }
 
 .card-title {
