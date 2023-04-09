@@ -15,9 +15,17 @@ export const getTimeElapsed = (timestamp) => {
     }
   } else if (timeDiff < day) {
     const hours = Math.floor(timeDiff / hour);
-    return `${hours} hours ago`;
+    if(hours == 1) {
+      return `${hours} hour ago`;
+    } else {
+      return `${hours} hours ago`;
+    }
   } else {
     const days = Math.floor(timeDiff / day);
-    return `${days} days ago`;
+    if(days == 1) {
+      return `${days} day ago`;
+    } else {
+      return `${days} days ago`;
+    }
   }
 };
