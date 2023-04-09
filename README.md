@@ -1,4 +1,4 @@
-## CodeLeap Coding Test
+## CodeLeap Coding Test Description
 
 Welcome to the CodeLeap coding test! The goal is to create a very simple application that will perform basic CRUD functions.
 
@@ -25,3 +25,11 @@ Please upload your code to a repository we can access and let us know when it's 
 Please deploy the code somewhere so we have a working testable version. If you are using React-Native, please make sure your code is easy to run in any platform. If we can't run it, we won't assess it.
 
 Make sure you read all instructions and details on the right side of this page.
+
+## Details
+
+### Figma file
+https://www.figma.com/file/0OQWLQmU14SF2cDhHPJ2sx/CodeLeap-Engineering-Test?node-id=3-10&t=EguRLT9hFyFb5NUL-0
+
+### My solution website
+https://codeleap-engineering-test.web.app/
