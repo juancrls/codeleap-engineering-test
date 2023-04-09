@@ -87,8 +87,6 @@ const Feed = (props) => {
         html.offsetHeight
       );
       const windowBottom = windowHeight + window.pageYOffset;
-      console.log("postCards.length", postCards.length)
-      console.log("visible posts", visiblePosts)
       if (windowBottom >= docHeight && postCards.length >= visiblePosts) {
         setLoadingNewPosts(true);
         setTimeout(() => {
