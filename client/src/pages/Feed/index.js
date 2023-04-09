@@ -26,41 +26,11 @@ const Feed = (props) => {
   const [visiblePosts, setVisiblePosts] = useState(3);
   const [loadingNewPosts, setLoadingNewPosts] = useState(false);
 
-  useEffect(() => {
-    function handleScroll() {
-      const windowHeight =
-        "innerHeight" in window
-          ? window.innerHeight
-          : document.documentElement.offsetHeight;
-      const body = document.body;
-      const html = document.documentElement;
-      const docHeight = Math.max(
-        body.scrollHeight,
-        body.offsetHeight,
-        html.clientHeight,
-        html.scrollHeight,
-        html.offsetHeight
-      );
-      const windowBottom = windowHeight + window.pageYOffset;
-      if (windowBottom >= docHeight && postCards.length >= visiblePosts) {
-        setLoadingNewPosts(true);
-        setTimeout(() => {
-          setVisiblePosts(visiblePosts + 3);
-          setLoadingNewPosts(false);
-        }, 1000);
-      }
-    }
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [visiblePosts]);
-
   const [postStates, setPostStates] = useState({
     title: { value: "" },
     content: { value: "" },
   });
+
   const [loading, setLoading] = useState(false);
 
   let hasEmptyFields =
@@ -100,6 +70,39 @@ const Feed = (props) => {
       />
     </Card>
   ));
+
+  useEffect(() => {
+    function handleScroll() {
+      const windowHeight =
+        "innerHeight" in window
+          ? window.innerHeight
+          : document.documentElement.offsetHeight;
+      const body = document.body;
+      const html = document.documentElement;
+      const docHeight = Math.max(
+        body.scrollHeight,
+        body.offsetHeight,
+        html.clientHeight,
+        html.scrollHeight,
+        html.offsetHeight
+      );
+      const windowBottom = windowHeight + window.pageYOffset;
+      console.log("postCards.length", postCards.length)
+      console.log("visible posts", visiblePosts)
+      if (windowBottom >= docHeight && postCards.length >= visiblePosts) {
+        setLoadingNewPosts(true);
+        setTimeout(() => {
+          setVisiblePosts(visiblePosts + 3);
+          setLoadingNewPosts(false);
+        }, 1000);
+      }
+    }
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [postCards]);
 
   return (
     <div className="feed">
