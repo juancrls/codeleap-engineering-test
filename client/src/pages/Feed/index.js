@@ -10,12 +10,12 @@ import Header from "../../components/Header";
 
 import { connect } from "react-redux";
 import { unsetUsername } from "../../actions/userActions";
-import { createPost, editPost, deletePost } from "../../actions/postActions";
+import { createPost } from "../../actions/postActions";
 
 import "./styles.scss"
 
 const Feed = (props) => {
-  const { createPost, editPost, deletePost, username, posts } = props;
+  const { createPost, username, posts } = props;
 
     // set the username on localStorage
 
@@ -50,14 +50,12 @@ const Feed = (props) => {
       }
     }))
   }
-
+  
   const postCards = posts.map(post => (
-    <Card key={post.id} title={post.title} showEditButtons={post.author == username ? true : false}>
+    <Card key={post.id} postId={post.id} title={post.title} showEditButtons={post.author == username ? true : false}>
       <PostView author={post.author} content={post.content} timestamp={post.timestamp} />
     </Card>
   ))
-
-  const contentTest = "Curabitur suscipit suscipit tellus. Phasellus consectetuer vestibulum elit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Maecenas egestas arcu quis ligula mattis placerat. Duis vel nibh at velit scelerisque suscipit."
 
   return (
     <div className="feed">

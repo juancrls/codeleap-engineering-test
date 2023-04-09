@@ -10,7 +10,6 @@ import { useNavigate } from "react-router-dom";
 import { PulseLoader } from "react-spinners";
 
 const Login = (props) => {
-  console.log("PROPS", props)
   const [currentUser, setCurrentUser] = useState("");
   // const [error, setError] = useState("");
   /**
@@ -49,7 +48,7 @@ const Login = (props) => {
 
   return (
     <div className="login-page">
-      <Card>
+      <Card size="medium">
         <Form
           onSubmit={handleSubmit}
           id="login-form"

@@ -1,4 +1,4 @@
-.delete-modal-container {
+.edit-modal-container {
   position: fixed;
   left: 0;
   top: 0;
@@ -11,18 +11,18 @@
   justify-content: center;
 }
 
-.delete-modal-wrapper {
+.edit-modal-wrapper {
   width: 660px;
-  height: 146px;
+  // height: 146px;
   padding: 1.5rem ;
 
   border-radius: 1rem;
   border: 1px solid #999999;
   background-color: #FFFFFF;
   color: #000000;
-
-  font-size: 22px;
-  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
 .modal-buttons-container {

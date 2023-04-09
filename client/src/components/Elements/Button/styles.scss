@@ -1,10 +1,17 @@
 .button-wrapper {
   align-self: flex-end;
-  width: 111px;
   height: 32px;
 
   &--full {
     width: 100%;
+  }
+
+  &--medium {
+    width: 111px;
+  }
+
+  &--big {
+    width: 120px;
   }
 
   &--icon {
@@ -42,7 +49,7 @@
     }
     
     &--danger {
-      background-color: red;
+      background-color: #FF5151;
       color: #FFFFFF;
   
       &:hover {
@@ -50,25 +57,26 @@
       }
   
       &:active {
-        background-color: #a61d1d;
+        background-color: #b13a3a;
       }
     }
   
     &--success {
-      background-color: green;
+      background-color: #47B960;
       color: #FFFFFF;
   
       &:hover {
-        background-color: #4cae4c;
+        background-color: #47ac5d;
       }
   
       &:active {
-        background-color: #3c8a24;
+        background-color: #3e9b52;
       }
     }
   
     &--neutral-1 {
       background-color: white;
+      border: 1px solid #999999;
       color: #000000;
   
       &:hover {

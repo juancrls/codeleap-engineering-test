@@ -13,7 +13,7 @@ export const createPost = (title, content, author) => {
   }
 }
 
-export const editPost = (id, title, content) => { // author
+export const editPost = (id, title, content) => {
   return {
     type: EDIT_POST,
     payload: {
@@ -24,7 +24,7 @@ export const editPost = (id, title, content) => { // author
   }
 }
 
-export const deletePost = (id) => { // author
+export const deletePost = (id) => {
   return {
     type: DELETE_POST,
     payload: {

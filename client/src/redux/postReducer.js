@@ -1,4 +1,5 @@
 import { CREATE_POST, EDIT_POST, DELETE_POST } from "../actions/postActions";
+import { generateGUID } from "../../../client/src/components/utils/getId"
 
 const loadUsernameFromLocalStorage = () => {
   const storedUsername = localStorage.getItem("username");
@@ -15,6 +16,7 @@ const initialState = {
   posts: loadPostsFromLocalStorage()
 };
 
+
 const postReducer = (state = initialState, action) => {
   switch (action.type) {
     case CREATE_POST:
@@ -23,7 +25,7 @@ const postReducer = (state = initialState, action) => {
         posts: [
           ...state.posts,
           {
-            id: state.posts.length + 1,
+            id: generateGUID(),
             title: action.payload.title,
             content: action.payload.content,
             author: action.payload.author,
@@ -35,25 +37,23 @@ const postReducer = (state = initialState, action) => {
       return {
         ...state,
         posts: state.posts.map(post => {
-          if(post.id === action.payload.id && post.author == state.username) {
+          if(post.id === action.payload.id) {
             return {
               ...post,
               title: action.payload.title,
               content: action.payload.content
             }
+          } else {
+            return post
           }
         })
       }
+      
       case DELETE_POST:
-        const postToDelete = state.posts.find((post) => post.id === action.payload.id);
-        if (postToDelete.author === state.currentUser) {
-          return {
-            ...state,
-            posts: state.posts.filter((post) => post.id !== action.payload.id)
-          };
-        } else {
-          return state;
-        }
+        return {
+          ...state,
+          posts: state.posts.filter((post) => post.id !== action.payload.id)
+        };
     default:
       return state;
   }

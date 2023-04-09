@@ -4,26 +4,36 @@ import UserNavBar from "../UserNavBar";
 import "./styles.scss";
 import { connect } from "react-redux";
 import { unsetUsername } from "../../actions/userActions";
-import userPlaceholderImage from "../assets/images/user-photo-placeholder.png"
+import userPlaceholderImage from "../assets/images/user-photo-placeholder.png";
+
+import DeleteModal from "../Modals/DeleteModal";
+import EditModal from "../Modals/EditModal";
 
 const Header = (props) => {
-  const { type, title, showEditButtons, showUserOptions, username } = props;
+  const { type, showEditButtons, showUserOptions, username, title, content, postId } = props;
+
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
   const [showUserNavBar, setShowUserNavBar] = useState(false);
-  const userNavBarRef = useRef(null);
   
+  const userNavBarRef = useRef(null);
+
   const toggleUserNavBar = async () => {
     setShowUserNavBar(!showUserNavBar);
   };
 
-const toggleButtonRef = useRef(null);
+  const toggleButtonRef = useRef(null);
 
-const handleClickOutside = (event) => {
-  if (userNavBarRef.current && !userNavBarRef.current.contains(event.target)) {
-    if (!toggleButtonRef.current.contains(event.target)) {
-      setShowUserNavBar(false);
+  const handleClickOutside = (event) => {
+    if (
+      userNavBarRef.current &&
+      !userNavBarRef.current.contains(event.target)
+    ) {
+      if (!toggleButtonRef.current.contains(event.target)) {
+        setShowUserNavBar(false);
+      }
     }
-  }
-};
+  };
 
   useEffect(() => {
     if (showUserNavBar) {
@@ -32,12 +42,21 @@ const handleClickOutside = (event) => {
       document.removeEventListener("mousedown", handleClickOutside);
     }
   }, [showUserNavBar]);
-  
 
-  let className=`header${type ? " header--" + type : ""}`
+  const toggleDeleteModal = () => {
+    setShowDeleteModal(!showDeleteModal);
+  }
+
+  const toggleEditModal = () => {
+    setShowEditModal(!showEditModal);
+  }
+
+  let className = `header${type ? " header--" + type : ""}`;
 
   return (
     <div className={className}>
+      {showDeleteModal && <DeleteModal postId={postId} toggleDeleteModal={toggleDeleteModal}/>}
+      {showEditModal && <EditModal postId={postId} toggleEditModal={toggleEditModal}/>}
       {title ? (
         <div className="title">
           <span>{title}</span>
@@ -46,7 +65,7 @@ const handleClickOutside = (event) => {
 
       {showEditButtons ? (
         <div className="edit-buttons-container">
-          <Button id="post-edit-button" theme={"icon"}>
+          <Button onClick={toggleDeleteModal} id="post-delete-button" theme={"icon"}>
             <i>
               <svg
                 width="22"
@@ -62,7 +81,7 @@ const handleClickOutside = (event) => {
               </svg>
             </i>
           </Button>
-          <Button id="post-delete-button" theme={"icon"}>
+          <Button onClick={toggleEditModal} id="post-edit-button" theme={"icon"}>
             <i>
               <svg
                 width="27"
@@ -95,7 +114,11 @@ const handleClickOutside = (event) => {
             onClick={toggleUserNavBar}
           >
             <div className="user-avatar-wrapper">
-              <img className="user-avatar" src={userPlaceholderImage} alt="User avatar"/>
+              <img
+                className="user-avatar"
+                src={userPlaceholderImage}
+                alt="User avatar"
+              />
             </div>
           </Button>
           {showUserNavBar && (
@@ -107,18 +130,19 @@ const handleClickOutside = (event) => {
       ) : null}
     </div>
   );
-}
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    unsetUsername: () => dispatch(unsetUsername())
+    unsetUsername: () => dispatch(unsetUsername()),
   };
 };
 
 const mapStateToProps = (state) => {
   return {
-    username: state.user.username
-  }
-}
+    username: state.user.username,
+    posts: state.posts.posts
+  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

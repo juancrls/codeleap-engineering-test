@@ -3,13 +3,13 @@ import Header from '../Header';
 import "./styles.scss";
 
 export default function Card(props) {
-  const { title, showEditButtons, children, isPostCard } = props
+  const { title, showEditButtons, postId, children, size="large" } = props
   return (
     <div className='card-container'>
       {title ? (
-        <Header type="card" title={title} showEditButtons={showEditButtons}/>
+        <Header type="card" title={title} postId={postId} showEditButtons={showEditButtons}/>
       ) : null}
-      <div className={`card-body ${title ? "card-body--hasHeader" : ""}`}>
+      <div className={`card-body${title ? " card-body--hasHeader" : ""} card-body--${size}`}>
         {children}
       </div>
     </div>
