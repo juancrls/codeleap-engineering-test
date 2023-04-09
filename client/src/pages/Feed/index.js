@@ -59,6 +59,7 @@ const Feed = (props) => {
 
   return (
     <div className="feed">
+      <div className="feed-background"></div>
       <div className="feed-wrapper">
         <Header title={"CodeLeap Network"} showUserOptions/>
         <div className="feed-container">
